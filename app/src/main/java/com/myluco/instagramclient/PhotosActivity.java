@@ -69,6 +69,8 @@ public class PhotosActivity extends AppCompatActivity {
 //            URL:"images" => "standard resolution" => url
 //            Caption: "caption" => "text"
 //            Author: "user" => username
+//                User Profile Picture: "user" => "profile_picture"
+                // time stamp : "caption" =>  "created_time"
                // super.onSuccess(statusCode, headers, response);
                 //Log.i("DEBUG-Success",response.toString());
                 JSONArray photosJSON;
@@ -78,9 +80,10 @@ public class PhotosActivity extends AppCompatActivity {
                         JSONObject object = photosJSON.getJSONObject(i);
                         InstagramPhoto photo = new InstagramPhoto();
                         photo.username = object.getJSONObject("user").getString("username");
-                        JSONObject oCaption = object.getJSONObject("caption");
-                        if (oCaption != null) {
-                            photo.caption = oCaption.getString("text");
+//                        JSONObject oCaption = object.getJSONObject("caption");
+                        if (!object.isNull("caption")) {
+                            photo.caption = object.getJSONObject("caption").getString("text");
+                            photo.timestamp = object.getJSONObject("caption").getLong("created_time");
                         }else {
                             photo.caption = "no caption given";
                         }
@@ -88,7 +91,9 @@ public class PhotosActivity extends AppCompatActivity {
                         photo.imageUrl = image.getString("url");
                         photo.imageHeight = image.getInt("height");
                         photo.likesCount = object.getJSONObject("likes").getInt("count");
-                        photos.add(photo);
+                        photo.userImageUrl = object.getJSONObject("user").getString("profile_picture");
+
+                                photos.add(photo);
 
                     }
                     Log.i("DEBUG-Success", String.valueOf(photos.size()));

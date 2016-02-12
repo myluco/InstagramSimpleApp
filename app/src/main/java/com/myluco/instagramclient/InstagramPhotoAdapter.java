@@ -1,6 +1,7 @@
 package com.myluco.instagramclient;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,17 +34,24 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto>{
         }
         //get the elements of the conevrtView
         TextView tvCaption = (TextView)convertView.findViewById(R.id.tvCaption);
-        ImageView ivPhoto = (ImageView)convertView.findViewById(R.id.ivPhoto);
+        TextView tvUser = (TextView)convertView.findViewById(R.id.tvUser);
+        TextView tvLikes = (TextView)convertView.findViewById(R.id.tvLikes);
+        TextView tvTime = (TextView)convertView.findViewById(R.id.tvTime);
 
+        ImageView ivPhoto = (ImageView)convertView.findViewById(R.id.ivPhoto);
+        ImageView ivUser = (ImageView)convertView.findViewById(R.id.ivUser);
         //populate elements with photo data
         tvCaption.setText(photo.caption);
-
+        tvUser.setText(photo.username);
+        tvLikes.setText(String.valueOf(photo.likesCount));
+        tvTime.setText(DateUtils.getRelativeTimeSpanString(photo.timestamp*1000,System.currentTimeMillis(),DateUtils.MINUTE_IN_MILLIS));
         //need to get the image. Will use Picasso
         //reset the image
         ivPhoto.setImageResource(0);
+        ivUser.setImageResource(0);
         //request is asynchronous
         Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
-
+        Picasso.with(getContext()).load(photo.userImageUrl).transform(new CircleTransform()).into(ivUser);
         return convertView;
     }
 }
