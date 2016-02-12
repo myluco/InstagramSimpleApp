@@ -38,7 +38,7 @@ Here's a walkthrough of implemented user stories:
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-
+* Had several issues with the App while debugging. The only way to get around (sometimes) was to delete the app and run again. It can be because of the OS that I use... Who knows. The problem happened only at debugging time (the program crashed if I did not go step by step)
 .
 
 ## License

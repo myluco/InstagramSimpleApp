@@ -33,7 +33,7 @@ The following advanced user stories are optional but recommended:
 
 Here's a walkthrough of implemented user stories:
 
-[Video Walkthrough](http://i.imgur.com/77WY2jY.gifv)
+[Video Walkthrough](http://imgur.com/B2p24szhttp)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
